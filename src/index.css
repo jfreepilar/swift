@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "monserrat-bold";
+  src: url(../src/assets/fonts/monserrat-bold.ttf);
+}
+
+@font-face {
+  font-family: "lato-bold";
+  src: url(../src/assets/fonts/lato-bold.ttf);
+}
+
+@theme {
+  --color-red-violet: #BB3289;
+  --color-martnique: #2C2344;
+  --color-prim: #F0DBE7;
+  --color-disco: #7B174C;
+  --color-razzmatazz: #D00C54;
+  --color-dusty-violet: #8174A0;
+  --color-lavander: #CEA9C1;
+
+  --font-monserrat-bold: monserrat, sans-serif;
+  --font-lato-bold: lato, sans-serif;
+}
+
+
+@layer utilities {
+  .gradient-violet {
+    background-image: linear-gradient(to right, #AC4BAB, #AA4CB4, #A454B9);
+  }
+}
+
+
+h1 {
+  font-size: 3.75rem;
+  font-weight: bold;
+  font-family: "monserrat-bold"
+}
+
+h2, h3 {
+  font-size: 3.25rem;
+  font-weight: bold;
+  font-family: "monserrat-bold"
+}
+
+h3 {
+  font-size: 2.5rem;
+}
+
+p {
+  font-family: "lato-bold";
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.25rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.75rem;
+  }
+}
