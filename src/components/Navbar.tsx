@@ -20,9 +20,9 @@ export interface navFirstLayer {
 }[]
 
 const navLayerOne: navFirstLayer[] = [
-    { name: "About Us", path: "/" },
-    { name: "Deals", path: "/" },
-    { name: "Log In", path: "/" }
+    { name: "About Us", path: "main" },
+    { name: "Deals", path: "main" },
+    { name: "Log In", path: "main" }
 ];
 
 const layerTwoItemsDropdown: Record<string, GenericArray> = {

@@ -12,7 +12,7 @@ interface NameProps {
 export const Name: React.FC<NameProps> = ( {postion = "absolute" , width = "w-[170px]", height = "h-[70px]"} ) => {
   return (
     <div className={`absolute ${postion}`}>
-      <NavLink to="/">
+      <NavLink to="main">
         <img src={swiftLogo} 
              className={`${width} ${height}`}/>
       </NavLink>
