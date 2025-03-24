@@ -9,11 +9,9 @@ export const MainLayout = () => {
     return (
       <div className={`text-white ${mainBackground}`}>
         <Navbar />
-        
         <main className="">
           <Outlet />
         </main>
-
         <Footer />
       </div>
     )
