@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import { Name } from './Name';
 import { GenericArray } from '../utils/GenericArray';
 import { AppDispatch, RootState } from '../store/store';
 import { showDropdown, hideDropdown } from "../store/slice/dropdownSlice";
+import { toggleScroll } from '../store/slice/scrollSlice';
 import { toggle } from "../store/slice/toggleSlice"
 import { NavLink } from 'react-router-dom';
 import { IoIosArrowDown } from "react-icons/io";
@@ -38,9 +40,24 @@ export const Navbar = () => {
     const dispatch: AppDispatch = useDispatch();
     const isDropdownVisible = useSelector((state: RootState) => state.dropdown.visibleDropdown);
     const isVisible = useSelector((state: RootState) => state.toggle.isVisible);
+    const isFixed = useSelector((state: RootState) => state.toggleScroll.isFixed);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 0 && !isFixed) {
+                dispatch(toggleScroll()); 
+            } else if (window.scrollY === 0 && isFixed) {
+                dispatch(toggleScroll()); 
+            }
+        };
+    
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [dispatch, isFixed]);
+    
     
     return (
-        <div className="font-monserrat-bold">
+        <div className="font-monserrat-bold text-white">
             <nav className={`${NavFooterPadding}`}>
                 <ul className="flex justify-end space-x-10 font-bold">
                     {navLayerOne.map((item, index) => (
@@ -51,7 +68,7 @@ export const Navbar = () => {
                 </ul>
             </nav>
 
-            <nav className={`relative flex items-center bg-martnique ${NavFooterPadding} py-4`}>
+            <nav className={`flex items-center bg-martnique py-4 w-full ${NavFooterPadding} ${isFixed ? "fixed top-0 z-20 transition:top duration-700 ease-in" : "relative"}`}>
                 <Name />
                 <ul className="hidden sm:flex ms-auto space-x-10">
                     {navLayerTwo.map((item, index) => (
