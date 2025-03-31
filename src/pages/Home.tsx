@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Carousel } from "../components/Carousel";
 import { carouselObject } from "../objects-arrays/carouselObject";
 import { websiteCopyObject } from "../objects-arrays/websiteCopyObject";
@@ -13,13 +13,17 @@ import mobileBanking from "../assets/images/mobile-banking.png";
 import arrowUp from "../assets/images/arrow-up.png";
 import { appMarketPlaceObject } from "../objects-arrays/appMarketPlaceObject";
 import qrCode from "../assets/images/qr-code.png";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store/store";
+import { addVisibleSection } from "../store/slice/sectionVisibilitySlice";
 
 
 export const sectionMargin = "mt-16 w-[90%]";
 
 export const Home = () => {
-const sections = useRef<Array<HTMLElement | null>>([]);
-  const [visibleSections, setVisibleSections] = useState(new Set());
+const sectionsRef = useRef<Array<HTMLElement | null>>([]);
+const dispatch = useDispatch();
+const visibleSections = useSelector((state: RootState) => state.sectionVisibility.visibleSectionIndex);
 
   useEffect(() => {
     document.title = "Swift | All-in-1 Digital Bank";
@@ -28,30 +32,27 @@ const sections = useRef<Array<HTMLElement | null>>([]);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisibleSections((prev) => new Set([...prev, entry.target]));
-            observer.unobserve(entry.target); 
+        entries.forEach(({ isIntersecting, target }) => {
+          if (!(target instanceof HTMLElement)) return; 
+  
+          const index = sectionsRef.current.indexOf(target);
+          if (isIntersecting && index !== -1) {
+            dispatch(addVisibleSection(index));
+            observer.unobserve(target);
           }
         });
       },
       { threshold: 0 }
     );
 
-    sections.current.forEach((section) => {
-      if (section) observer.observe(section);
-    });
+    sectionsRef.current.forEach((section) => section && observer.observe(section));
 
-    return () => {
-      sections.current.forEach((section) => {
-        if (section) observer.unobserve(section);
-      });
-    };
-  }, []);
+    return () => sectionsRef.current.forEach((section) => section && observer.unobserve(section));
+  }, [dispatch]);
 
   const slideUpEffect = (index: number) =>
     `transition-all duration-1000 ease-out ${
-      visibleSections.has(sections.current[index]) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-full"
+      visibleSections.includes(index) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-full"
     }`;
 
   return (
@@ -60,7 +61,7 @@ const sections = useRef<Array<HTMLElement | null>>([]);
         <Carousel items={carouselObject} />
       </section>
 
-      <section ref={(el) => {sections.current[0] = el;}} className={`py-10 text-white ${sectionMargin} ${slideUpEffect(0)}`}>
+      <section ref={(el) => {sectionsRef.current[0] = el;}} className={`py-10 text-white ${sectionMargin} ${slideUpEffect(0)}`}>
         <div className="mx-auto w-3/4 pb-14">
           <h1 className="text-4xl md:text-6xl text-center">
             All the features you need right at your fingertips
@@ -83,7 +84,7 @@ const sections = useRef<Array<HTMLElement | null>>([]);
         </div>
       </section>
 
-      <section ref={(el) => {sections.current[1] = el;}} className={`flex flex-col items-center py-10 ${sectionMargin} ${slideUpEffect(1)}`}>
+      <section id="sectionTwo" ref={(el) => {sectionsRef.current[1] = el;}} className={`flex flex-col items-center py-10 ${sectionMargin} ${slideUpEffect(1)}`}>
         <p className="text-2xl font-bold">WHAT'S NEW</p>
         <h2 className="mb-16">Your Money. Your Way.</h2>
         <div className="flex justify-center items-center flex-col lg:flex-row gap-4">
@@ -116,7 +117,7 @@ const sections = useRef<Array<HTMLElement | null>>([]);
         </div>
       </section>
 
-      <section ref={(el) => {sections.current[2] = el;}} className={`flex flex-col w-full ${slideUpEffect(2)}`}>       
+      <section id="sectionThree" ref={(el) => {sectionsRef.current[2] = el;}} className={`flex flex-col w-full ${slideUpEffect(2)}`}>       
         <div className={`flex flex-col items-center`}>
           <p className="font-bold">PARTNER BRANDS</p>
           <h2>Meet the Swift community</h2>
@@ -131,7 +132,7 @@ const sections = useRef<Array<HTMLElement | null>>([]);
 
 
 
-      <section ref={(el) => {sections.current[3] = el;}} className={`flex justify-center w-[90%] rounded-2xl bg-lavander ${slideUpEffect(3)} ${sectionMargin}`}>
+      <section id="sectionFour" ref={(el) => {sectionsRef.current[3] = el;}} className={`flex justify-center w-[90%] rounded-2xl bg-lavander ${slideUpEffect(3)} ${sectionMargin}`}>
           <div className="flex col flex-col-reverse lg:flex-row justify-center gap-10 lg:gap-0  py-10">
             <div className="flex">
               <img src={mobileBanking} className="w-[650px] h-[570px]"/>
@@ -158,7 +159,7 @@ const sections = useRef<Array<HTMLElement | null>>([]);
         </div>
       </section>
 
-      <section ref={(el) => {sections.current[4] = el;}} className={`flex justify-center ${slideUpEffect(4)} ${sectionMargin}`}>
+      <section id="sectionFive" ref={(el) => {sectionsRef.current[4] = el;}} className={`flex justify-center ${slideUpEffect(4)} ${sectionMargin}`}>
         <div className="flex flex-col lg:flex-row w-[90%]">
           <div className="py-20">
             <div className="text-sm/14 mb-10">
@@ -183,9 +184,7 @@ const sections = useRef<Array<HTMLElement | null>>([]);
           </div>
         </div>
         
-
       </section>
-
 
     </div>
   );
