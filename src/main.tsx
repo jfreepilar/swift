@@ -6,6 +6,7 @@ import { store } from '../src/store/store';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import MainLayout from './components/MainLayout.tsx'
 import { Home } from './pages/Home.tsx';
+import { AboutUs } from './pages/AboutUs.tsx';
 
 const router = createBrowserRouter ([
   {
@@ -13,6 +14,7 @@ const router = createBrowserRouter ([
     element: <MainLayout />,
     children: [
       { index: true, element: <Home /> },
+      { path: "about-us", element: <AboutUs />}
     ]
   }
 ]);

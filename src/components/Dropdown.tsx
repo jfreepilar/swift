@@ -29,7 +29,7 @@ const Dropdown: React.FC<DropdownProps> = ({ items, isVisible, nestedItems = {},
 
       {items.map((item, index) => (
         <Link
-          to={item === "Home" ? "/" : ""}
+          to={item === "Home" ? "/swift/" : ""}
           key={index}
           className={`block p-2 font-medium text-gray-600 hover:bg-gray-100 cursor-pointer
             ${position === "right" ? "text-right" : "text-left"} `}

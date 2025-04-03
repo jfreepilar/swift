@@ -1,13 +1,22 @@
 @import "tailwindcss";
 
 @font-face {
+  font-family: "machina-neue";
+  src: url("../src/assets/fonts/ppneuemachina-plainultrabold.woff2") format("woff2"),
+       url("../src/assets/fonts/ppneuemachina-plainultrabold.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
   font-family: "monserrat-bold";
   src: url(../src/assets/fonts/monserrat-bold.ttf);
 }
 
 @font-face {
   font-family: "lato-bold";
-  src: url(../src/assets/fonts/lato-bold.ttf);
+  src: url(../src/assets/fonts/lato-bold.ttf);  
 }
 
 @theme {
@@ -19,8 +28,10 @@
   --color-dusty-violet: #8174A0;
   --color-lavander: #CEA9C1;
 
+  --font-machina-neue: machina-neue, sans-serif;
   --font-monserrat-bold: monserrat, sans-serif;
   --font-lato-bold: lato, sans-serif;
+  
 }
 
 
