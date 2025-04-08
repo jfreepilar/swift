@@ -27,6 +27,7 @@
   --color-razzmatazz: #D00C54;
   --color-dusty-violet: #8174A0;
   --color-lavander: #CEA9C1;
+  --custom-shadow: 5px 5px 15px rgba(0,0,0,0.7);
 
   --font-machina-neue: machina-neue, sans-serif;
   --font-monserrat-bold: monserrat, sans-serif;

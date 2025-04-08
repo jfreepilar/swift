@@ -1,9 +1,12 @@
 import { useEffect } from "react";
 import { sectionMargin } from "./Home";
+import { useSlideUpEffect } from "../utils/slideUpEffect";
 import groupOfPeople  from "../assets/images/about-us/group-of-people.png";
 import digitalBank  from "../assets/images/about-us/digital-bank.png";
+import pieChart  from "../assets/images/about-us/pie-chart.png";
 
 export const AboutUs = () => {
+    const { sectionsRef, slideUpClass } = useSlideUpEffect();
 
     useEffect(() => {
         document.title = "About Us | Swift";
@@ -38,7 +41,7 @@ export const AboutUs = () => {
 
  return (
     <div className="flex flex-col items-center">
-        <section className={`${sectionMargin} rounded-2xl bg-lavander flex flex-col lg:flex-row h-fit`}>
+        <section  className={`${sectionMargin} rounded-2xl bg-lavander flex flex-col lg:flex-row h-fit`}>
             <div className="ms-10 mt-20">
                 <h2 className="leading-12">The Power of Meaningful Digital Banking</h2>
                 <p className="text-2xl mt-6">We prioritize you to provide a banking experience that truly matters</p>
@@ -49,14 +52,14 @@ export const AboutUs = () => {
             </div>
         </section>
 
-        <section className={`${sectionMargin}`}>
+        <section ref={(el) => {sectionsRef.current[0] = el;}} className={`${sectionMargin} ${slideUpClass(0)}`}>
             <div className="flex">
                 <div>
-                    <img src={digitalBank} className="hidden md:block"/>
+                    <img src={digitalBank} className="hidden md:block w-[700px]"/>
                 </div>
                 <div className="w-full md:w-1/2 flex flex-col items-center ">
-                    <div>
-                        <p className="text-2xl text-center">Who we are</p>
+                    <div className="text-center">
+                        <p className="text-2xl">Who we are</p>
                         <h1 className="font-machina-neue! text-8xl!">swift</h1>
                         <h3 className="mt-[-25px]"><em>All-in-1 Bank</em></h3>
                     </div>
@@ -71,7 +74,7 @@ export const AboutUs = () => {
             </div>
         </section>
 
-        <section className={`${sectionMargin} flex flex-col items-center`}>
+        <section ref={(el) => {sectionsRef.current[1] =el;}} className={`${sectionMargin} flex flex-col items-center ${slideUpClass(1)}`}>
             <h2>Mission and Vision</h2>
             <div className="flex gap-4">
                 {missionVisionParagraphs.map((item, index) => (
@@ -82,6 +85,23 @@ export const AboutUs = () => {
                 ))
                 }
             </div>
+        </section>
+
+        <section ref={(el) => {sectionsRef.current[2] =el;}} className={`${sectionMargin} ${slideUpClass(2)} flex `}>
+            <div className="flex flex-col lg:flex-row justify-center gap-10">
+                <div className="p-4 flex justify-center">
+                    <img src={pieChart}
+                         className="w-[450px] rounded-xl shadow-[var(--custom-shadow)]"/>
+                </div>
+
+                <div className="px-10 w-full lg:w-1/2 ">
+                    <h2 className="text-center">Who Owns Swift</h2>
+                    <p className="text-xl text-center lg:text-start">
+                        The founding team and executive leadership often retain the largest stake, holding 50% ownership. This ensures they maintain significant influence and strategic control over the company's direction. <br/> <br/> Public shareholders—a mix of retail investors and institutional entities—hold 25%, having acquired their shares through the stock market. The remaining 25% is held by venture capitalists and early institutional investors, who provided the initial funding and support during the company’s formative stages. This ownership structure reflects a balance between strong leadership, strategic investment, and public market participation, fostering both stability and long-term innovation.
+                    </p>
+                </div>
+            </div>
+
         </section>
 
 
