@@ -4,6 +4,7 @@ import { useSlideUpEffect } from "../utils/slideUpEffect";
 import groupOfPeople  from "../assets/images/about-us/group-of-people.png";
 import digitalBank  from "../assets/images/about-us/digital-bank.png";
 import pieChart  from "../assets/images/about-us/pie-chart.png";
+import boardOfDirectors from "../assets/images/about-us/board-of-directors.png";
 
 export const AboutUs = () => {
     const { sectionsRef, slideUpClass } = useSlideUpEffect();
@@ -104,7 +105,13 @@ export const AboutUs = () => {
 
         </section>
 
+        <section ref={(el) => {sectionsRef.current[3] =el;}} className={`${sectionMargin} ${slideUpClass(3)}`}>
+            <h2 className="text-center">Board of Directors</h2>
+            <div>
+                <img src={boardOfDirectors} alt="" />
+            </div>
 
+        </section>
     </div>
  )
 }
