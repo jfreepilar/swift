@@ -18,7 +18,7 @@ export interface navFirstLayer {
 
 const navLayerOne: navFirstLayer[] = [
     { name: "About Us", path: "about-us" },
-    { name: "Deals", path: "/swift/" },
+    { name: "Deals", path: "deals" },
     { name: "Log In", path: "/swift/" }
 ];
 
