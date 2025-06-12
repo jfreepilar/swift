@@ -61,6 +61,7 @@ h3 {
 
 p {
   font-family: "lato-bold";
+  font-size: 1.25rem;
 }
 
 @media (max-width: 768px) {
@@ -75,4 +76,8 @@ p {
   h3 {
     font-size: 1.75rem;
   }
+  p {
+    font-size: 1rem;
+  }
+
 }
