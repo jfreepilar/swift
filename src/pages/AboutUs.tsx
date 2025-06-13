@@ -1,13 +1,11 @@
 import { useEffect } from "react";
 import { sectionMargin } from "./Home";
-import { useSlideUpEffect } from "../utils/slideUpEffect";
 import groupOfPeople  from "../assets/images/about-us/group-of-people.png";
 import digitalBank  from "../assets/images/about-us/digital-bank.png";
 import pieChart  from "../assets/images/about-us/pie-chart.png";
 import boardOfDirectors from "../assets/images/about-us/board-of-directors.png";
 
 export const AboutUs = () => {
-    const { sectionsRef, slideUpClass } = useSlideUpEffect();
 
     useEffect(() => {
         document.title = "About Us | Swift";
@@ -53,7 +51,7 @@ export const AboutUs = () => {
             </div>
         </section>
 
-        <section ref={(el) => {sectionsRef.current[0] = el;}} className={`${sectionMargin} ${slideUpClass(0)}`}>
+        <section className={sectionMargin}>
             <div className="flex">
                 <div>
                     <img src={digitalBank} className="hidden md:block w-[700px]"/>
@@ -75,7 +73,7 @@ export const AboutUs = () => {
             </div>
         </section>
 
-        <section ref={(el) => {sectionsRef.current[1] =el;}} className={`${sectionMargin} flex flex-col items-center ${slideUpClass(1)}`}>
+        <section className={sectionMargin}>
             <h2>Mission and Vision</h2>
             <div className="flex gap-4">
                 {missionVisionParagraphs.map((item, index) => (
@@ -88,7 +86,7 @@ export const AboutUs = () => {
             </div>
         </section>
 
-        <section ref={(el) => {sectionsRef.current[2] =el;}} className={`${sectionMargin} ${slideUpClass(2)} flex `}>
+        <section className={sectionMargin}>
             <div className="flex flex-col lg:flex-row justify-center gap-10">
                 <div className="p-4 flex justify-center">
                     <img src={pieChart}
@@ -105,7 +103,7 @@ export const AboutUs = () => {
 
         </section>
 
-        <section ref={(el) => {sectionsRef.current[3] =el;}} className={`${sectionMargin} ${slideUpClass(3)}`}>
+        <section className={sectionMargin}>
             <h2 className="text-center">Board of Directors</h2>
             <div>
                 <img src={boardOfDirectors} alt="" />
