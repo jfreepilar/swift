@@ -67,7 +67,7 @@ export const Navbar = () => {
                             {item.name}
                         </NavLink>
                     ))}
-                    <button onClick={() => window.open("/swift/logIn", "_blank")}
+                    <button onClick={() => window.open("/swift/login", "_blank")}
                             className="cursor-pointer">
                         Log In
                     </button>
