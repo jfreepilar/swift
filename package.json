@@ -2,6 +2,7 @@
   "name": "swift",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://jfreepilar.github.io/swift/",
   "type": "module",
   "scripts": {
     "dev": "vite",
