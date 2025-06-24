@@ -124,7 +124,7 @@ export const Login = () => {
                         </div>   
                     </div>
                     <div className="flex bg-gray-50 mt-4 mx-8 p-2 rounded-lg">
-                        <span className="text-[1.25rem] mt-[1px] mr-2"><IoLockClosedOutline /></span>
+                        <span className="text-[1.25rem] mt-[1px] mr-2   "><IoLockClosedOutline /></span>
                         <p className="text-[14px]! text-gray-400">jfreepilar.github.io/swift/login</p>
                     </div>
                 </div>
