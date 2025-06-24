@@ -19,7 +19,6 @@ export interface navFirstLayer {
 const navLayerOne: navFirstLayer[] = [
     { name: "About Us", path: "about-us" },
     { name: "Deals", path: "deals" },
-    { name: "Log In", path: "/swift/" }
 ];
 
 const navLayerTwo: { name: string; path?: string }[] = [
@@ -68,6 +67,10 @@ export const Navbar = () => {
                             {item.name}
                         </NavLink>
                     ))}
+                    <button onClick={() => window.open("/swift/logIn", "_blank")}
+                            className="cursor-pointer">
+                        Log In
+                    </button>
                 </ul>
             </nav>
 
