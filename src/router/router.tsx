@@ -9,22 +9,18 @@ import { AuthLayout } from './AuthLayout.tsx';
 export const router = createBrowserRouter([
   {
     path: "/swift",
+    element: <MainLayout />,
     children: [
-      {
-        element: <MainLayout />,
-        children: [
-          { index: true, element: <Home /> },
-          { path: "about-us", element: <AboutUs /> },
-          { path: "deals", element: <Deals /> }
-        ]
-      },
-      {
-        path: "login",
-        element: <AuthLayout />,
-        children: [
-          { index: true, element: <Login /> }
-        ]
-      }
+      { index: true, element: <Home /> },
+      { path: "about-us", element: <AboutUs /> },
+      { path: "deals", element: <Deals /> }
+    ]
+  },
+  {
+    path: "/swift/login",
+    element: <AuthLayout />,
+    children: [
+      { index: true, element: <Login /> }
     ]
   }
 ]);
