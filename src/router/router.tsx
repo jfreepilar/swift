@@ -13,14 +13,14 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: "about-us", element: <AboutUs /> },
-      { path: "deals", element: <Deals /> }
-    ]
+      { path: "deals", element: <Deals /> },
+    ],
   },
   {
     path: "/swift/login",
     element: <AuthLayout />,
     children: [
       { index: true, element: <Login /> }
-    ]
-  }
+    ],
+  },
 ]);
