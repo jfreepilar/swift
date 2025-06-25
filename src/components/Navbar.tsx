@@ -67,7 +67,7 @@ export const Navbar = () => {
                             {item.name}
                         </NavLink>
                     ))}
-                    <button onClick={() => window.open("https://jfreepilar.github.io/swift/#/login", "_blank")}
+                    <button onClick={() => window.open(`${window.location.origin}/swift/login`, "_blank")}
                             className="cursor-pointer">
                         Log In
                     </button>
